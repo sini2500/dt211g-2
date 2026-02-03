@@ -2,4 +2,4 @@
 
 Det här är ett projekt för kursen frontend-baserad webbutveckling, VT 2026.
 
-Webbplatsen är publicerad på Netlify: 
+Webbplatsen är publicerad på Netlify: ?

@@ -13,7 +13,8 @@ menuBtn.addEventListener('click', () => {
         "syllabus": "https://www.miun.se/utbildning/kursplaner-och-utbildningsplaner/DT084G/"
  */
 
-let data = [];
+let allData = [];
+let shownData = [];
 let ascending = true;
 
 /* get data */
@@ -24,9 +25,10 @@ async function getData() {
             throw new Error('Response inte ok!');
         }
 
-        data = await response.json();
+        allData = await response.json();
+        shownData = allData;
 
-        render(data);
+        render(shownData);
 
     } catch (error) {
         console.error('Error:', error);
@@ -63,31 +65,30 @@ function sortRows(th) {
 
     th.classList.add('sorted');
 
-    data.sort((a, b) => {
+    shownData.sort((a, b) => {
         let A = Object.values(a)[index].toLowerCase();
         let B = Object.values(b)[index].toLowerCase();
 
         return ascending ? A.localeCompare(B) : B.localeCompare(A);
     });
 
-    render(data);
+    render(shownData);
 }
 
 /* handle filtering */
 function filterRows(e) {
     let term = e.target.value.toLowerCase();
 
-    let filteredData = data.filter(item => {
+    let filteredData = allData.filter(item =>
+        item.code.toLowerCase().includes(term) ||
+        item.coursename.toLowerCase().includes(term) ||
+        item.progression.toLowerCase().includes(term)
+    );
 
-        return Object.values(item).some(value =>
-            String(value).toLowerCase().includes(term)
-        );
-
-    });
+    shownData = filteredData;
 
     render(filteredData);
 }
-
 
 // start when dom read
 window.addEventListener('DOMContentLoaded', getData);

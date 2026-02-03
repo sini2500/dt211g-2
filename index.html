@@ -27,6 +27,27 @@
       <h1>Välkommen till kurslistan</h1>
       <p>Den här uppgiften går ut på att hämta data via fetchAPI och visa den i en tabell.</p>
       <p>Idén är att vi ska lära oss hämta från API och filtrera eller sortera tabellrader efter användarens önskemål.</p>
+
+      <hr>
+
+      <section id="tableSection">
+        <input type="text" id="search" placeholder="Sök...">
+
+        <table id="courseTable">
+          <thead>
+            <tr>
+              <th onclick="sort(1)">Kurskod</th>
+              <th onclick="sort(2)">Namn</th>
+              <th onclick="sort(3)">Progression</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>123abc</td><td>Min Kurs</td><td>Z</td></tr>
+          </tbody>
+
+        </table>
+      </section>
+
     </main>
   </body>
 </html>

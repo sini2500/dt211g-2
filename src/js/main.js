@@ -51,29 +51,43 @@ function render(rows) {
 /* handle sorting */
 function sortRows(th) {
 
-  ascending = !ascending;
+    ascending = !ascending;
 
-  let index = th.dataset.idx;
+    let index = th.dataset.idx;
 
-  const headers = document.querySelectorAll('th');
+    const headers = document.querySelectorAll('th');
 
-  headers.forEach(th => {
-    th.classList.remove('sorted');
-  });
-  
-  th.classList.add('sorted');
+    headers.forEach(th => {
+        th.classList.remove('sorted');
+    });
 
-  data.sort((a, b) => {
-    let A = Object.values(a)[index].toLowerCase();
-    let B = Object.values(b)[index].toLowerCase();
+    th.classList.add('sorted');
 
-    return ascending ? A.localeCompare(B) : B.localeCompare(A);
-  });
+    data.sort((a, b) => {
+        let A = Object.values(a)[index].toLowerCase();
+        let B = Object.values(b)[index].toLowerCase();
 
-  render(data);
+        return ascending ? A.localeCompare(B) : B.localeCompare(A);
+    });
+
+    render(data);
 }
 
 /* handle filtering */
+function filterRows(e) {
+    let term = e.target.value.toLowerCase();
+
+    let filteredData = data.filter(item => {
+
+        return Object.values(item).some(value =>
+            String(value).toLowerCase().includes(term)
+        );
+
+    });
+
+    render(filteredData);
+}
+
 
 // start when dom read
 window.addEventListener('DOMContentLoaded', getData);
@@ -81,5 +95,9 @@ window.addEventListener('DOMContentLoaded', getData);
 // listen for clicks on th
 const headers = document.querySelectorAll('th');
 headers.forEach(th => {
-  th.addEventListener('click', () => sortRows(th));
+    th.addEventListener('click', () => sortRows(th));
 });
+
+// listen for search change
+const searchBar = document.getElementById('search');
+searchBar.addEventListener('input', filterRows);

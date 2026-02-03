@@ -1,13 +1,32 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lab2</title>
+    <title>DT211G - Kurslistan</title>
+    <link rel="stylesheet" href="/src/css/style.css">
+    <script src="/src/js/main.js" type="module" defer></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <header>
+      <div class="container">
+          <nav>
+            <div class="logo"><a href="/">Kurslistan</a></div>
+
+            <button class="burger">&#x2630;</button>
+
+            <ul class="menu">
+              <li><a href="/">Lab 2</a></li>
+            </ul>
+
+          </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Välkommen till kurslistan</h1>
+      <p>Den här uppgiften går ut på att hämta data via fetchAPI och visa den i en tabell.</p>
+      <p>Idén är att vi ska lära oss hämta från API och filtrera eller sortera tabellrader efter användarens önskemål.</p>
+    </main>
   </body>
 </html>
